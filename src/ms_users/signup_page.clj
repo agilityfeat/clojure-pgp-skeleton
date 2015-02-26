@@ -5,12 +5,36 @@
     [de.otto.status :as status]
     [de.otto.tesla.stateful.app-status :as app-status]
     [compojure.core :as compojure]
+    [ring.util.codec :as codec]
+    [clojure.walk :as walk]
+    [clj-pgp.message :as pgp-msg]
+    [clojure.string :as str]
     [clojure.data.json :as json :only [write-str]]))
+
+(defn getmap 
+  "converts form-data in a map"
+  [form-params]
+  (walk/keywordize-keys
+    (codec/form-decode form-params)))
+
+(defn welcome-page 
+   "return the welcome page encrypted with PGP"
+   [body]
+   (def form (getmap body))
+   (def message (str "Welcome " (:username form) "! This is your welcome page!"))
+   (def encrypted-message
+    (pgp-msg/encrypt
+      message (:public_key form)
+      :format :utf8
+      :cipher :aes-256
+      :compress :zip
+      :armor true))
+   encrypted-message)
 
 (defn signup-user [self body]
     {:status  200
      :headers {"Content-Type" "application/json"}
-     :body    (json/write-str body)})
+     :body    (json/write-str (welcome-page body) )})
 
 
 
