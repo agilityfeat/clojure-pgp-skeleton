@@ -11,6 +11,7 @@
     [clj-pgp.message :as pgp-msg]
     [clojure.string :as str]
     [thi.ng.crypto.core :refer :all]
+    [clojure.java.io :as io]
     [clojure.data.json :as json :only [write-str]]))
 
 (defn getmap 
@@ -19,13 +20,22 @@
   (walk/keywordize-keys
     (codec/form-decode form-params)))
 
+(defn format-public-key
+  "Recieve a Publick Key in ASCII format, and return an encoded public key format"
+  [pbk]
+   (def tmp_file (str "pbk" (rand-int 30000) ".tmp")) 
+   (spit tmp_file pbk)
+   (def public_key (public-key tmp_file))
+   (io/delete-file tmp_file)
+   public_key
+  )
+
 (defn welcome-page 
    "return the welcome page encrypted with PGP"
    [body]
    (def form (getmap body))
    (def message (str "Welcome " (:username form) "! Your registration was successful!"))
-   (spit "public_key.temp" (:public_key form))
-   (def public_key (public-key "public_key.temp"))
+   (def public_key (format-public-key (:public_key form)))
    (def encrypted-message
     (pgp-msg/encrypt
       message public_key
