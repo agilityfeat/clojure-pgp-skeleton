@@ -1,10 +1,10 @@
-(defproject de.otto/tesla-microservice "0.1.6"
+(defproject ms-users "1.0.0"
             :description "basic microservice."
-            :url "https://github.com/otto-de/tesla-microservice"
+            :url "https://github.com/ggoldens/ms_users"
             :license { :name "Apache License 2.0"
                        :url "http://www.apache.org/license/LICENSE-2.0.html"}
             :scm { :name "git"
- 	           :url "https://github.com/otto-de/tesla-microservice"}
+ 	          :url "https://github.com/ggoldens/ms_users"}
             :dependencies [[org.clojure/clojure "1.6.0"]
                            [com.stuartsierra/component "0.2.2"]
                            [environ "1.0.0"]
@@ -26,12 +26,13 @@
             :main ^:skip-aot ms-users.account-system
             :aot [de.otto.tesla.util.escapingmessageconverter]
             :clean-targets [:target-path :compile-path "target"]
-            :source-paths ["src" "example/src"]
+            :source-paths ["src"]
             :java-source-paths ["src/java"]
             :test-selectors {:default     (constantly true)
                              :integration :integration
                              :unit        :unit
                              :all         (constantly true)}
+            :uberjar-name "ms-users.jar"                 
             :profiles {:test {:aot [de.otto.tesla.util.escapingmessageconverter]
                               :env {:metering-reporter "console"
                                     :import-products   "false"
