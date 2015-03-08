@@ -1,4 +1,4 @@
-(defproject ms-users "1.0.0"
+(defproject ms-users "1.0.0-SNAPSHOT"
             :description "basic microservice."
             :url "https://github.com/ggoldens/ms_users"
             :license { :name "Apache License 2.0"
