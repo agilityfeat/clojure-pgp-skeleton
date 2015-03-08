@@ -9,7 +9,7 @@
                            [com.stuartsierra/component "0.2.2"]
                            [environ "1.0.0"]
                            [clj-time "0.8.0"]
-                           [de.otto/tesla-microservice "0.1.6"]
+                           [de.otto/tesla-microservice "0.1.7"]
                            [ring/ring-codec "1.0.0"]
                            [mvxcvi/clj-pgp "0.8.0"]
                            [thi.ng/crypto "0.1.0-SNAPSHOT"]
