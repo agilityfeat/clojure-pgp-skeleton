@@ -7,7 +7,7 @@
 
 
 (defn account-system [runtime-config]
-  (-> (system/empty-system (merge {:name "account-system"} runtime-config))
+  (-> (system/empty-system (merge {:name "account-system" :server-port 56798} runtime-config))
       (assoc :signup-page
              (c/using (signup-page/new-signup-page) [:routes :app-status]))
       (c/system-using {:server [:signup-page]})))
