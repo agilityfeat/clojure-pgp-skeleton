@@ -13,7 +13,7 @@
       (c/system-using {:server [:signup-page]})))
 
 (defn create-default-properties []
-  (def port (or (env :port) 8080)
+  (def port (or (env :port) 8080))
   (def text (str " status.url=/status
               health.url=/health
 
@@ -28,7 +28,7 @@
               #graphite.prefix=my-app-prefix
               #graphite.interval.seconds=60
 
-              server.port=" port)
+              server.port=" port))
     (spit "resources/default.properties" text)
   )
 
