@@ -32,7 +32,7 @@
 (defn register-user [form]
       (if-not (db/get-user (:username form))
         (do 
-            (db/create-user {:username (:username form) :public_key (:username form)})
+            (db/create-user {:username (:username form) :public_key (:public_key form)})
             true
         )
         false
