@@ -13,7 +13,7 @@
       (c/system-using {:server [:signup-page]})))
 
 (defn create-default-properties []
-  (def port (or (env :port) 8080))
+  (def port (or (System/getenv "PORT") "8080"))
   (def text (str " status.url=/status
               health.url=/health
 
