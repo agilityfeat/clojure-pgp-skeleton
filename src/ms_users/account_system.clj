@@ -1,7 +1,6 @@
 (ns ms-users.account-system
   (:require [de.otto.tesla.system :as system]
             [ms-users.signup-page :as signup-page]
-            [ms-users.db.core :as d]
             [com.stuartsierra.component :as c]
             [environ.core :refer [env]])
   (:gen-class))

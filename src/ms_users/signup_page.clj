@@ -10,7 +10,8 @@
     [clojure.string :as str]
     [thi.ng.crypto.core :refer :all]
     [clojure.java.io :as io]
-    [clojure.data.json :as json :only [write-str]]))
+    [clojure.data.json :as json :only [write-str]]
+    [ms-users.db.core :as db]))
 
 (defn getmap 
   "converts form-data in a map"
@@ -28,20 +29,39 @@
    public_key
   )
 
+(defn register-user [form]
+      (if-not (db/get-user (:username form))
+        (do 
+            (db/create-user {:username (:username form) :public_key (:username form)})
+            true
+        )
+        false
+      )
+)
+
+(defn encrypt-message [form]
+  (def message (str "Welcome " (:username form) "! Your registration was successful!"))
+  (def public_key (format-public-key (:public_key form)))
+  (def encrypted-message
+            (pgp-msg/encrypt
+              message public_key
+              :format :utf8
+              :cipher :aes-256
+              :compress :zip
+              :armor true))
+  encrypted-message)
+
 (defn welcome-page 
    "return the welcome page encrypted with PGP"
    [body]
    (def form (getmap body))
-   (def message (str "Welcome " (:username form) "! Your registration was successful!"))
-   (def public_key (format-public-key (:public_key form)))
-   (def encrypted-message
-    (pgp-msg/encrypt
-      message public_key
-      :format :utf8
-      :cipher :aes-256
-      :compress :zip
-      :armor true))
-   encrypted-message)
+   (if (register-user form)
+      ;Register ok
+      (encrypt-message form)
+      ;User exists
+      "user-exists"
+   )
+)
 
 (defn signup-user [self body]
     {:status  200

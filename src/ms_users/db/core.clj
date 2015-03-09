@@ -12,11 +12,9 @@
 (defn create-user [user]
   (mc/insert db "users" user))
 
-(defn update-user [id first-name last-name email]
-  (mc/update db "users" {:id id}
-             {$set {:first_name first-name
-                    :last_name last-name
-                    :email email}}))
+(defn update-user [username public_key]
+  (mc/update db "users" {:username username}
+             {$set {:public_key public_key}}))
 
-(defn get-user [id]
-  (mc/find-one-as-map db "users" {:id id}))
+(defn get-user [username]
+  (mc/find-one-as-map db "users" {:username username}))
