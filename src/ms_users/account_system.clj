@@ -1,13 +1,14 @@
 (ns ms-users.account-system
   (:require [de.otto.tesla.system :as system]
             [ms-users.signup-page :as signup-page]
+            [ms-users.db.core :as d]
             [com.stuartsierra.component :as c]
             [environ.core :refer [env]])
   (:gen-class))
 
 
 (defn account-system [runtime-config]
-  (-> (system/empty-system (merge {:name "account-system" :server-port (System/getenv "PORT")} runtime-config))
+  (-> (system/empty-system (merge {:name "account-system" :server-port (or (System/getenv "PORT") 8080)} runtime-config))
       (assoc :signup-page
              (c/using (signup-page/new-signup-page) [:routes :app-status]))
       (c/system-using {:server [:signup-page]})))

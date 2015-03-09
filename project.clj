@@ -11,7 +11,8 @@
                            [de.otto/tesla-microservice "0.1.7"]
                            [ring/ring-codec "1.0.0"]
                            [mvxcvi/clj-pgp "0.8.0"]
-                           [thi.ng/crypto "0.1.0-SNAPSHOT"]]
+                           [thi.ng/crypto "0.1.0-SNAPSHOT"]
+                           [com.novemberain/monger "2.0.0"]]
 
 
             :plugins [[lein-marginalia "0.8.0"]
