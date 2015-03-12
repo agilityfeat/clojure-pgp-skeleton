@@ -8,8 +8,8 @@ Clone the repo. Start the example microservice with
 
 `$ lein run`
 
-Access the status report under `http://localhost:8081/status`.
-Access the health status under `http://localhost:8081/health`.
+Access the status report under `http://localhost:8080/status`.
+Access the health status under `http://localhost:8080/health`.
 
 ## Initial Contributors
 
