@@ -1,8 +1,7 @@
 (ns ms-users.user-system
   (:require [de.otto.tesla.system :as system]
             [ms-users.user-component :as user-component]
-            [com.stuartsierra.component :as c]
-            [environ.core :refer [env]])
+            [com.stuartsierra.component :as c])
   (:gen-class))
 
 ;; -------------------------

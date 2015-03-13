@@ -2,7 +2,6 @@
   (:require
     [com.stuartsierra.component :as c]
     [de.otto.tesla.stateful.routes :as routes]
-    [de.otto.status :as status]
     [compojure.core :as compojure]
     [clojure.string :as str]
     [ms-users.utils :as utils]
