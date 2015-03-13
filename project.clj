@@ -15,25 +15,10 @@
                            [com.novemberain/monger "2.0.0"]]
 
 
-            :plugins [[lein-marginalia "0.8.0"]
-                      [lein-environ "1.0.0"]]
-            :main ^:skip-aot ms-users.account-system
-            :aot [de.otto.tesla.util.escapingmessageconverter]
+            :plugins [[lein-environ "1.0.0"]]
+            :main ms-users.user-system
             :clean-targets [:target-path :compile-path "target"]
             :source-paths ["src"]
-            :java-source-paths ["src/java"]
-            :test-selectors {:default     (constantly true)
-                             :integration :integration
-                             :unit        :unit
-                             :all         (constantly true)}
             :uberjar-name "ms-users.jar"                 
-            :profiles {:test {:aot [de.otto.tesla.util.escapingmessageconverter]
-                              :env {:metering-reporter "console"
-                                    :import-products   "false"
-                                    :server-port       "9991"
-                                    :cache-dir         "/tmp"}}
-                       :meta {:env {:app-name :tesla-meta}}
-                       :uberjar {:aot :all}}
             :test-paths ["test" "test-resources"]
-
             :min-lein-version "2.0.0")
