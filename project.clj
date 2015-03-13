@@ -19,5 +19,5 @@
             :clean-targets [:target-path :compile-path "target"]
             :source-paths ["src"]
             :uberjar-name "ms-users.jar"                 
-            :test-paths ["test" "test-resources"]
+            :profiles {:uberjar {:aot :all}}
             :min-lein-version "2.0.0")

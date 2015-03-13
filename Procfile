@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/ms-users.jar clojure.main -m ms-users.account-system
+web: java $JVM_OPTS -cp target/ms-users.jar clojure.main -m ms-users.user-system
