@@ -15,7 +15,7 @@
     (codec/form-decode form-params)))
 
 (defn format-public-key
-  "Recieve a Publick Key in ASCII format, and return an encoded public key format"
+  "Receive a Public Key in ASCII format, and return an encoded public key format"
   [pbk]
    (def tmp_file (str "pbk" (rand-int 30000) ".tmp")) 
    (spit tmp_file pbk)
@@ -26,9 +26,9 @@
 (defn get-encrypted-message 
   "Returns a PGP message encrypted using a public key"
   [message public_key]
-  	(def formated-public-key (format-public-key public_key))
+  	(def formatted-public-key (format-public-key public_key))
     (pgp-msg/encrypt
-              message formated-public-key
+              message formatted-public-key
               :format :utf8
               :cipher :aes-256
               :compress :zip

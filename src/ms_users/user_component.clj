@@ -80,7 +80,7 @@
      :body    (json/write-str (welcome-page-login body) )})
 
 ;; -------------------------
-;; Define the AccountManager component
+;; Define the User component
 (defrecord UserComponent []
   c/Lifecycle
   (start [self]
